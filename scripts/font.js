@@ -254,7 +254,11 @@
             }
         }
 
-        root.style.setProperty("--main-font-family", appliedStack);
+        if (typeof window.updateGlobalFontStack === "function") {
+            window.updateGlobalFontStack();
+        } else {
+            root.style.setProperty("--main-font-family", appliedStack);
+        }
 
         const badge = document.getElementById("fontActiveBadge");
         if (badge) {
@@ -262,6 +266,10 @@
         }
 
         updateActiveFontItem(fontValue, customName);
+
+        if (typeof window.renderFontGrid === "function") {
+            window.renderFontGrid();
+        }
     }
 
     function updateActiveFontItem(activeId, customName = "") {
@@ -293,8 +301,6 @@
         if (!fontSectionCard || !fontGrid) return;
 
         let selectedCategory = "all";
-        const savedFont = localStorage.getItem("selectedFont") || "default";
-        const savedCustomFont = localStorage.getItem("customFontName") || "";
 
         // Lazy font loader for cards in view
         const fontCardObserver = new IntersectionObserver((entries) => {
@@ -309,9 +315,11 @@
             });
         }, { root: fontGrid, rootMargin: "50px" });
 
-        // Render font grid
+        // Render font grid (always reads fresh localStorage state)
         function renderFontGrid() {
             fontGrid.innerHTML = "";
+            const currentSavedFont = localStorage.getItem("selectedFont") || "default";
+            const currentCustomFont = localStorage.getItem("customFontName") || "";
             const filterText = (fontSearchInput ? fontSearchInput.value : "").toLowerCase().trim();
 
             const filtered = PRESET_FONTS.filter(font => {
@@ -327,19 +335,19 @@
             });
 
             // If user has a custom font active and it's not in the presets, display it as a card
-            if (savedFont === "custom" && savedCustomFont) {
-                if (!filterText || savedCustomFont.toLowerCase().includes(filterText)) {
+            if (currentSavedFont === "custom" && currentCustomFont) {
+                if (!filterText || currentCustomFont.toLowerCase().includes(filterText)) {
                     const customCard = document.createElement("div");
                     customCard.className = "fontItem active";
                     customCard.setAttribute("data-font-id", "custom");
-                    customCard.setAttribute("data-font-name", savedCustomFont);
-                    customCard.style.fontFamily = `"${savedCustomFont}", sans-serif`;
+                    customCard.setAttribute("data-font-name", currentCustomFont);
+                    customCard.style.fontFamily = `"${currentCustomFont}", sans-serif`;
                     customCard.innerHTML = `
-                        <div class="fontItemName">${savedCustomFont}</div>
+                        <div class="fontItemName">${currentCustomFont}</div>
                         <div class="fontItemCategory">Custom Font</div>
                     `;
                     customCard.addEventListener("click", () => {
-                        applyFont("custom", savedCustomFont, true);
+                        applyFont("custom", currentCustomFont, true);
                     });
                     fontGrid.appendChild(customCard);
                 }
@@ -347,7 +355,7 @@
 
             filtered.forEach(font => {
                 const item = document.createElement("div");
-                const isActive = (savedFont === "custom" ? false : (savedFont === font.id || (!savedFont && font.id === "default")));
+                const isActive = (currentSavedFont === "custom" ? false : (currentSavedFont === font.id || (!currentSavedFont && font.id === "default")));
                 item.className = `fontItem ${isActive ? "active" : ""}`;
                 item.setAttribute("data-font-id", font.id);
                 item.setAttribute("data-font-name", font.name);
@@ -397,8 +405,11 @@
             }
         }
 
+        window.renderFontGrid = renderFontGrid;
         renderFontGrid();
-        applyFont(savedFont, savedCustomFont, false);
+        const initialSavedFont = localStorage.getItem("selectedFont") || "default";
+        const initialCustomFont = localStorage.getItem("customFontName") || "";
+        applyFont(initialSavedFont, initialCustomFont, false);
 
         // Category filter buttons
         if (fontCategoryPills) {

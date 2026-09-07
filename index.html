@@ -77,6 +77,7 @@
     <script src="locales/pl.js"></script>
     <script src="locales/uk.js"></script>
     <script src="locales/sv.js"></script>
+    <script src="locales/ota_TR.js"></script>
 </head>
 
 <body data-bg="color">
@@ -597,10 +598,10 @@
 
                     <!-- Date Text -->
                     <text id="digidate" x="290" y="120" text-anchor="middle" fill="#E2EEFF" font-size="28"
-                        font-family="Arial" class="digidate">Thu 9</text>
+                        font-family="inherit" class="digidate">Thu 9</text>
 
                     <!-- Full Time Text (Hour:Minute) -->
-                    <text x="290" y="260" id="digiclock" class="digiclock" font-family="Arial">
+                    <text x="290" y="260" id="digiclock" class="digiclock" font-family="inherit">
                         <tspan id="digihours">6</tspan>
                         <tspan id="digicolon" dx="-34">:</tspan>
                         <tspan id="digiminutes" dx="-34">28</tspan>
@@ -608,7 +609,7 @@
 
                     <!-- AM/PM Text -->
                     <text id="amPm" x="290" y="330" text-anchor="middle" fill="#E2EEFF" font-size="28"
-                        font-family="Arial" class="amPm">AM</text>
+                        font-family="inherit" class="amPm">AM</text>
                 </svg>
             </div>
 
@@ -1856,21 +1857,52 @@
 
                             <div class="sectionInner">
                                 <!-- start of languageSelector -->
-                                <div class="languageSection">
-                                    <div class="languageIcon">
-                                        <svg height="100%" width="30px" viewBox="0 0 16 16"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <g id="languageSelectorIconSvg" class="accentColor">
-                                                <path
-                                                    d="M4.545 6.714L4.11 8H3l1.862-5h1.284L8 8H6.833l-.435-1.286zm1.634-.736L5.5 3.956h-.049l-.679 2.022z" />
-                                                <path
-                                                    d="M0 2a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v3h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zm7.138 9.995q.289.451.63.846c-.748.575-1.673 1.001-2.768 1.292c.178.217.451.635.555.867c1.125-.359 2.08-.844 2.886-1.494c.777.665 1.739 1.165 2.93 1.472c.133-.254.414-.673.629-.89c-1.125-.253-2.057-.694-2.82-1.284c.681-.747 1.222-1.651 1.621-2.757H14V8h-3v1.047h.765c-.318.844-.74 1.546-1.272 2.13a6 6 0 0 1-.415-.492a2 2 0 0 1-.94.31" />
-                                            </g>
-                                        </svg>
+                                <div class="languageSectionContainer" id="languageSectionContainer">
+                                    <div class="languageSectionCard" id="languageSectionCard">
+                                        <div class="languageCardHeader" id="languageCardHeader" role="button">
+                                            <div class="languageHeaderLeft">
+                                                <div class="languageIcon">
+                                                    <svg height="22px" width="22px" viewBox="0 0 16 16"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <g id="languageSelectorIconSvg" class="accentColor">
+                                                            <path
+                                                                d="M4.545 6.714L4.11 8H3l1.862-5h1.284L8 8H6.833l-.435-1.286zm1.634-.736L5.5 3.956h-.049l-.679 2.022z" />
+                                                            <path
+                                                                d="M0 2a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v3h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zm7.138 9.995q.289.451.63.846c-.748.575-1.673 1.001-2.768 1.292c.178.217.451.635.555.867c1.125-.359 2.08-.844 2.886-1.494c.777.665 1.739 1.165 2.93 1.472c.133-.254.414-.673.629-.89c-1.125-.253-2.057-.694-2.82-1.284c.681-.747 1.222-1.651 1.621-2.757H14V8h-3v1.047h.765c-.318.844-.74 1.546-1.272 2.13a6 6 0 0 1-.415-.492a2 2 0 0 1-.94.31" />
+                                                        </g>
+                                                    </svg>
+                                                </div>
+                                                <div class="languageCardTitleGroup">
+                                                    <span class="languageCardTitle" id="languageTitle">Language</span>
+                                                    <span class="languageCardSub" id="languageActiveBadge">English (ENGLISH)</span>
+                                                </div>
+                                            </div>
+                                            <div class="languageCardChevron">
+                                                <svg viewBox="0 0 24 24" width="20" height="20">
+                                                    <path fill="currentColor"
+                                                        d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
+                                                </svg>
+                                            </div>
+                                        </div>
+
+                                        <div class="languageCardBody" id="languageCardBody">
+                                            <div class="languageSearchBox">
+                                                <svg class="languageSearchIcon" viewBox="0 0 24 24" width="16" height="16">
+                                                    <path fill="currentColor"
+                                                        d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                                                </svg>
+                                                <input type="text" id="languageSearchInput" placeholder="Search language..." autocomplete="off" />
+                                                <button class="languageSearchClear" id="clearLanguageSearchBtn" style="display:none;">✕</button>
+                                            </div>
+
+                                            <div class="languageGrid" id="languageGrid">
+                                                <!-- Dynamically populated -->
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <!-- LANGUAGE SELECTION OPTIONS -->
-                                    <select class="languageSelector" id="languageSelector">
+                                    <!-- Compatibility select for existing scripts -->
+                                    <select class="languageSelector" id="languageSelector" style="display:none;">
                                         <option value="ar_SA">Arabic (العربية)</option>
                                         <option value="az">Azerbaijani (Azərbaycanca)</option>
                                         <option value="bn">Bangla (বাংলা)</option>
@@ -1899,14 +1931,15 @@
                                         <option value="ta">Tamil (தமிழ்)</option>
                                         <option value="th">Thai (ภาษาไทย)</option>
                                         <option value="tr">Turkish (Türkçe)</option>
+                                        <option value="ota_TR">Turkish (Arabic script) (عثمانلیجه / تورکجه)</option>
                                         <option value="uk">Ukrainian (Українська)</option>
                                         <option value="ur">Urdu (اردو)</option>
                                         <option value="uz">Uzbek (O'zbek)</option>
                                         <option value="vi">Vietnamese (Tiếng Việt)</option>
                                         <!-- Place new language alphabetically -->
                                     </select>
-                                    <!-- end of languageSelector -->
                                 </div>
+                                <!-- end of languageSelector -->
 
                                 <!-- Settings -->
                                 <div class="backupRestoreContainer">

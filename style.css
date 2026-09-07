@@ -3985,71 +3985,216 @@ input:checked + .toggle:before {
 
 /* ---------------Menu-bar-css---------------- */
 
-/* --------------Language & Dark Mode Selection-------------- */
-.languageSection {
+/* --------------Language Selection Card-------------- */
+.languageSectionContainer {
 	width: 100%;
-	height: 50px;
-	display: flex;
-	justify-content: space-between;
-	margin-top: 19px;
-	gap: 20px;
+	margin-top: 14px;
+	margin-bottom: 14px;
 }
 
-.languageSelector {
-	background-color: var(--whitishColor-blue);
+.languageSectionCard {
+	background-color: var(--accentLightTint-blue);
+	border-radius: 24px;
+	overflow: hidden;
+	transition: background-color 0.25s var(--md-motion-ease), box-shadow 0.25s var(--md-motion-ease);
+}
+
+.languageCardHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 18px;
+	cursor: pointer;
+	user-select: none;
+	background-color: var(--accentLightTint-blue);
+	border-radius: 24px;
+	transition: background-color 0.2s var(--md-motion-ease);
+}
+
+.languageCardHeader:hover {
+	background-color: color-mix(in srgb, var(--textColorDark-blue) 5%, var(--accentLightTint-blue));
+}
+
+.languageHeaderLeft {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	overflow: hidden;
+}
+
+.languageIcon {
+	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: fit-content;
-	min-width: 240px;
-	width: 100%;
-	border: 2px solid transparent;
-	/* adding transparent border on focus it will be turned to theme color*/
-	display: grid;
-	padding: 12px;
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	background-color: var(--whitishColor-blue);
+	flex-shrink: 0;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.languageCardTitleGroup {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.languageCardTitle {
+	font-size: 0.94rem;
+	font-weight: 600;
 	color: var(--textColorDark-blue);
-	border-radius: 26px;
-	appearance: none;
-	-moz-appearance: none;
-	cursor: pointer;
-	padding-inline-start: 20px;
+	line-height: 1.25;
+}
+
+.languageCardSub {
+	font-size: 0.76rem;
+	color: var(--darkColor-blue);
+	font-weight: 500;
+	opacity: 0.85;
+	margin-top: 1px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.languageCardChevron {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--textColorDark-blue);
+	transition: transform 0.25s var(--md-motion-ease);
+	flex-shrink: 0;
+	margin-left: 8px;
+}
+
+.languageSectionCard.open .languageCardChevron {
+	transform: rotate(180deg);
+}
+
+.languageCardBody {
+	display: none;
+	padding: 6px 14px 14px;
+	animation: fontCardExpand 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.languageSectionCard.open .languageCardBody {
+	display: block;
+}
+
+.languageSearchBox {
+	display: flex;
+	align-items: center;
+	background-color: var(--whitishColor-blue);
+	border-radius: 20px;
+	padding: 7px 14px;
+	margin-bottom: 10px;
+	gap: 8px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.languageSearchIcon {
+	color: var(--textColorDark-blue);
+	opacity: 0.55;
+	flex-shrink: 0;
+}
+
+.languageSearchBox input {
+	border: none;
+	background: transparent;
 	font-size: 0.82rem;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-	@-moz-document url-prefix() {
-		/* Scrollbar styles for Firefox */
-		scrollbar-width: thin;
-		scrollbar-color: var(--darkColor-blue) transparent;
-	}
-	transition: border 0.25s var(--md-motion-ease);
+	color: var(--textColorDark-blue);
+	width: 100%;
+	outline: none;
+	font-family: inherit;
 }
 
-select:open {
-	background: var(--bg-color-blue);
+.languageSearchClear {
+	background: transparent;
+	border: none;
+	color: var(--textColorDark-blue);
+	opacity: 0.5;
+	cursor: pointer;
+	padding: 2px 4px;
+	font-size: 0.82rem;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-option:checked {
-	background: var(--accentLightTint-blue);
+.languageSearchClear:hover {
+	opacity: 0.9;
 }
 
-/* Scrollbar styles for Chrome, Edge, Safari */
-.languageSelector::-webkit-scrollbar {
-	width: 6px;
+.languageGrid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 8px;
+	max-height: 240px;
+	overflow-y: auto;
+	padding-right: 4px;
+	scrollbar-width: thin;
+	scrollbar-color: var(--darkColor-blue) transparent;
 }
 
-.languageSelector::-webkit-scrollbar-track {
-	background-color: transparent;
+.languageGrid::-webkit-scrollbar {
+	width: 5px;
 }
 
-.languageSelector::-webkit-scrollbar-thumb {
+.languageGrid::-webkit-scrollbar-thumb {
 	background-color: var(--darkColor-blue);
 	border-radius: 3px;
 }
 
-.languageSelector:hover,
-.languageSelector:focus {
-	border: 2px solid var(--darkColor-blue);
-	/* color matching border on focus */
-	outline: none;
-	/* Removes the default outline */
+.languageItem {
+	background-color: var(--whitishColor-blue);
+	border-radius: 14px;
+	padding: 9px 12px;
+	cursor: pointer;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	transition: background-color 0.18s var(--md-motion-ease), color 0.18s var(--md-motion-ease);
+	position: relative;
+	overflow: hidden;
+}
+
+.languageItem:hover {
+	background-color: color-mix(in srgb, var(--textColorDark-blue) 7%, var(--whitishColor-blue));
+}
+
+.languageItem.active {
+	background-color: var(--darkColor-blue);
+	color: var(--whitishColor-blue);
+}
+
+.languageItem.active:hover {
+	background-color: var(--darkColor-blue);
+}
+
+.languageItemNative {
+	font-size: 0.88rem;
+	font-weight: 600;
+	line-height: 1.25;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.languageItemEnglish {
+	font-size: 0.7rem;
+	opacity: 0.72;
+	margin-top: 2px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.languageItem.active .languageItemEnglish {
+	opacity: 0.9;
+	color: var(--whitishColor-blue);
 }
 
 /* Font selection styles */
@@ -5397,6 +5542,49 @@ body[data-bg="wallpaper"] .dropdown-content {
 .black-theme .languageSelector {
 	background-color: var(--darkColor-dark);
 	scrollbar-color: var(--darkerColor-blue) transparent;
+}
+
+.black-theme .languageSectionCard {
+	background-color: #1a1a1a;
+}
+
+.black-theme .languageCardHeader {
+	background-color: #1a1a1a;
+}
+
+.black-theme .languageCardHeader:hover {
+	background-color: #242424;
+}
+
+.black-theme .languageSearchBox {
+	background-color: var(--darkColor-dark);
+}
+
+.black-theme .languageSearchBox input {
+	color: #e2eeff;
+}
+
+.black-theme .languageSearchIcon,
+.black-theme .languageSearchClear {
+	color: #e2eeff;
+}
+
+.black-theme .languageItem {
+	background-color: var(--darkColor-dark);
+	color: #e2eeff;
+}
+
+.black-theme .languageItem:hover {
+	background-color: color-mix(in srgb, white 7%, var(--darkColor-dark));
+}
+
+.black-theme .languageItem.active {
+	background-color: var(--darkerColor-blue);
+	color: #ffffff;
+}
+
+.black-theme .languageItem.active:hover {
+	background-color: var(--darkerColor-blue);
 }
 
 .black-theme .fontSearchBarContainer {

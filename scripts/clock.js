@@ -169,6 +169,8 @@ async function initializeClock() {
                 de: `${dayName}, ${dayOfMonth}. ${monthName}`,
                 fa: `${dayName}، ${localizedDayOfMonth} ${monthName}`, // e.g., شنبه، ۲۵ اسفند
                 ar_SA: `${dayName}, ${localizedDayOfMonth} ${monthName}`,	// e.g., الجمعة, 31 مايو
+                ota_TR: `${dayName}، ${localizedDayOfMonth} ${monthName}`,
+                "ota-tr": `${dayName}، ${localizedDayOfMonth} ${monthName}`,
                 el: `${dayName.substring(0, 3)} ${dayOfMonth} ${monthName}`, // Κυρ 22 Δεκ
                 th: `วัน${dayName}ที่ ${dayOfMonth} ${monthName}`, // วันอาทิตย์ที่ 22 ธันวาคม
                 uk: `${dayName}, ${dayOfMonth} ${monthName.substring(0, 4)}`,
@@ -320,6 +322,8 @@ async function initializeClock() {
             de: `${dayOfMonth}. ${dayName}`,
             fa: `${dayName} ${localizedDayOfMonth}`, // e.g. شنبه ۲۵
             ar_SA: `${dayName}, ${localizedDayOfMonth}`,	// e.g., الجمعة, 31
+            ota_TR: `${dayName}، ${localizedDayOfMonth}`,
+            "ota-tr": `${dayName}، ${localizedDayOfMonth}`,
             el: `${dayName.substring(0, 3)} ${dayOfMonth}`, // Κυρ 22
             th: `${dayName}ที่ ${dayOfMonth}`,
             uk: `${dayOfMonth} ${dayName}`,
@@ -381,6 +385,8 @@ async function initializeClock() {
                 period = realHours < 12 ? "ق.ظ" : "ب.ظ"; // قبل از ظهر / بعد از ظهر
             } else if (currentLanguage === "ar_SA") {
                 period = realHours < 12 ? "ص" : "م"; // صباحاً / مساءً
+            } else if (currentLanguage === "ota_TR" || currentLanguage === "ota-tr" || currentLanguage === "ota") {
+                period = realHours < 12 ? "ق.ظ" : "ب.ظ"; // قبل ظهر / بعد ظهر
             } else if (currentLanguage === "ta") {
                 if (realHours < 2) {
                     period = "யாமம்"
@@ -510,6 +516,18 @@ async function initializeClock() {
         lastDateString = null;
         updateDate();
     }
+
+    // Exported function to refresh clock strings immediately when language changes
+    window.refreshClockLocale = function () {
+        lastDateString = null;
+        lastDigitalDateString = null;
+        lastGreetingString = null;
+        try { updateDate(); } catch (e) { console.error(e); }
+        try { updatedigiClock(); } catch (e) { console.error(e); }
+    };
+    window.updateDate = updateDate;
+    window.updatedigiClock = updatedigiClock;
+    window.getGreeting = getGreeting;
 
     // Save and load toggle state
     document.addEventListener("DOMContentLoaded", function () {
