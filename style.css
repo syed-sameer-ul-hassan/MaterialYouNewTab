@@ -4052,6 +4052,255 @@ option:checked {
 	/* Removes the default outline */
 }
 
+/* Font selection styles */
+.fontSectionContainer {
+	margin-top: 15px;
+	transition: all 0.3s var(--md-motion-ease);
+}
+
+.fontCardHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+	user-select: none;
+	outline: none;
+}
+
+.fontCardTitleGroup {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.fontCardChevron {
+	width: 9px;
+	height: 9px;
+	border-right: 2.5px solid var(--textColorDark-blue);
+	border-bottom: 2.5px solid var(--textColorDark-blue);
+	transform: rotate(45deg);
+	transition: transform 0.25s var(--md-motion-ease);
+	flex-shrink: 0;
+	margin-right: 4px;
+}
+
+.fontSectionContainer.expanded .fontCardChevron {
+	transform: rotate(-135deg);
+}
+
+.fontCardBody {
+	max-height: 0;
+	opacity: 0;
+	overflow: hidden;
+	transition:
+		max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+		opacity 0.25s ease,
+		margin-top 0.25s ease;
+}
+
+.fontSectionContainer.expanded .fontCardBody {
+	max-height: 520px;
+	opacity: 1;
+	margin-top: 14px;
+}
+
+.fontSearchBarContainer {
+	display: flex;
+	align-items: center;
+	background-color: var(--whitishColor-blue);
+	border-radius: 20px;
+	padding: 8px 14px;
+	gap: 8px;
+	border: 2px solid transparent;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	transition: border 0.2s ease;
+}
+
+.fontSearchBarContainer:focus-within {
+	border: 2px solid var(--darkColor-blue);
+}
+
+.fontSearchIcon {
+	color: var(--darkColor-blue);
+	flex-shrink: 0;
+}
+
+.fontSearchInput {
+	flex: 1;
+	border: none;
+	background: transparent;
+	outline: none;
+	color: var(--textColorDark-blue);
+	font-size: 0.85rem;
+}
+
+.clearFontSearchBtn {
+	background: none;
+	border: none;
+	color: var(--textColorDark-blue);
+	font-size: 1.2rem;
+	cursor: pointer;
+	line-height: 1;
+	opacity: 0.6;
+	padding: 0 2px;
+}
+
+.clearFontSearchBtn:hover {
+	opacity: 1;
+}
+
+.fontCategoryPills {
+	display: flex;
+	gap: 6px;
+	margin-top: 10px;
+	overflow-x: auto;
+	padding-bottom: 2px;
+	scrollbar-width: none;
+}
+
+.fontCategoryPills::-webkit-scrollbar {
+	display: none;
+}
+
+.fontPill {
+	background-color: var(--whitishColor-blue);
+	color: var(--textColorDark-blue);
+	border: 1px solid transparent;
+	border-radius: 14px;
+	padding: 5px 11px;
+	font-size: 0.72rem;
+	font-weight: 500;
+	cursor: pointer;
+	white-space: nowrap;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+	transition: all 0.2s var(--md-motion-ease);
+}
+
+.fontPill:hover {
+	background-color: color-mix(in srgb, var(--accentLightTint-blue) 50%, white);
+}
+
+.fontPill.active {
+	background-color: var(--darkColor-blue);
+	color: var(--whitishColor-blue);
+}
+
+.black-theme .fontPill {
+	background-color: var(--darkColor-dark);
+	color: #e2eeff;
+}
+
+.black-theme .fontPill.active {
+	background-color: var(--darkerColor-blue);
+	color: #ffffff;
+}
+
+.customFontApplyRow {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	background: color-mix(in srgb, var(--accentLightTint-blue) 80%, white);
+	border-radius: 16px;
+	padding: 8px 12px;
+	margin-top: 10px;
+	border: 1px dashed var(--darkColor-blue);
+}
+
+.customFontPreviewText {
+	font-size: 0.82rem;
+	color: var(--textColorDark-blue);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.fontGrid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 8px;
+	margin-top: 10px;
+	max-height: 240px;
+	overflow-y: auto;
+	padding-right: 4px;
+}
+
+.fontGrid::-webkit-scrollbar {
+	width: 5px;
+}
+
+.fontGrid::-webkit-scrollbar-thumb {
+	background-color: var(--darkColor-blue);
+	border-radius: 3px;
+}
+
+.fontItem {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background-color: var(--whitishColor-blue);
+	color: var(--textColorDark-blue);
+	border-radius: 16px;
+	padding: 10px 12px;
+	cursor: pointer;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+	transition: background-color 0.2s var(--md-motion-ease);
+	position: relative;
+}
+
+.fontItem:hover {
+	background-color: color-mix(in srgb, var(--textColorDark-blue) 7%, var(--whitishColor-blue));
+}
+
+.fontItem.active {
+	background-color: var(--darkColor-blue);
+	color: var(--whitishColor-blue);
+}
+
+.fontItem.active:hover {
+	background-color: var(--darkColor-blue);
+}
+
+.fontItemName {
+	font-size: 0.88rem;
+	font-weight: 500;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.fontItemCategory {
+	font-size: 0.68rem;
+	opacity: 0.7;
+	margin-top: 2px;
+}
+
+.fontItem.active .fontItemCategory {
+	opacity: 0.9;
+}
+
+.fontApplyBtn {
+	background-color: var(--darkColor-blue);
+	color: var(--whitishColor-blue);
+	border: none;
+	border-radius: 20px;
+	padding: 8px 16px;
+	font-size: 0.82rem;
+	cursor: pointer;
+	font-weight: 500;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	transition: background-color 0.2s, transform 0.1s;
+	flex-shrink: 0;
+}
+
+.fontApplyBtn:hover {
+	background-color: var(--darkerColor-blue);
+}
+
+.fontApplyBtn:active {
+	transform: scale(0.97);
+}
+
 /* --------------Theming stuff------------------ */
 .themeSegment {
 	position: relative;
@@ -5148,6 +5397,52 @@ body[data-bg="wallpaper"] .dropdown-content {
 .black-theme .languageSelector {
 	background-color: var(--darkColor-dark);
 	scrollbar-color: var(--darkerColor-blue) transparent;
+}
+
+.black-theme .fontSearchBarContainer {
+	background-color: var(--darkColor-dark);
+}
+
+.black-theme .fontSearchInput {
+	color: #e2eeff;
+}
+
+.black-theme .fontSearchIcon,
+.black-theme .clearFontSearchBtn {
+	color: #e2eeff;
+}
+
+.black-theme .fontItem {
+	background-color: var(--darkColor-dark);
+	color: #e2eeff;
+}
+
+.black-theme .fontItem:hover {
+	background-color: color-mix(in srgb, white 7%, var(--darkColor-dark));
+}
+
+.black-theme .fontItem.active {
+	background-color: var(--darkerColor-blue);
+	color: #ffffff;
+}
+
+.black-theme .fontItem.active:hover {
+	background-color: var(--darkerColor-blue);
+}
+
+.black-theme .customFontApplyRow {
+	background-color: var(--darkColor-dark);
+	border-color: var(--darkerColor-blue);
+}
+
+.black-theme .customFontPreviewText {
+	color: #e2eeff;
+}
+
+.black-theme .fontApplyBtn {
+	background-color: var(--darkerColor-blue);
+	color: var(--whitishColor-blue);
+	border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .black-theme .languageSelector::-webkit-scrollbar-thumb,

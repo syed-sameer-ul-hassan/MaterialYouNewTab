@@ -133,9 +133,12 @@ const es = {
 
     // Greeting
     greeting: {
+        "lateNight": "¡Trabajando tarde!",
+        "earlyMorning": "¡Muy buenos días!",
         "morning": "¡Buenos días!",
         "afternoon": "¡Buenas tardes!",
-        "evening": "¡Buenas noches!"
+        "evening": "¡Buenas tardes!",
+        "night": "¡Buenas noches!"
     },
 
     // Search Engines

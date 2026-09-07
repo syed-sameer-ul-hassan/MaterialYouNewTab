@@ -137,9 +137,12 @@ const fr = {
 
     // Greeting
     greeting: {
-        "morning": "Bonjour!",
-        "afternoon": "Bonsoir!",
-        "evening": "Bonne nuit!"
+        "lateNight": "Travail tardif !",
+        "earlyMorning": "Bonne journée matinale !",
+        "morning": "Bonjour !",
+        "afternoon": "Bon après-midi !",
+        "evening": "Bonsoir !",
+        "night": "Bonne nuit !"
     },
 
     // Search Engines

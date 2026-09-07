@@ -238,24 +238,43 @@ async function initializeClock() {
         updateDate();
     }
 
+    //update greeting
     function getGreeting() {
         const currentHour = new Date().getHours();
         let greetingKey;
 
-        // Determine the greeting key based on the current hour
-        if (currentHour < 12) {
+        if (currentHour >= 0 && currentHour < 5) {
+            greetingKey = "lateNight";
+        } else if (currentHour >= 5 && currentHour < 8) {
+            greetingKey = "earlyMorning";
+        } else if (currentHour >= 8 && currentHour < 12) {
             greetingKey = "morning";
-        } else if (currentHour < 17) {
+        } else if (currentHour >= 12 && currentHour < 17) {
             greetingKey = "afternoon";
-        } else {
+        } else if (currentHour >= 17 && currentHour < 21) {
             greetingKey = "evening";
+        } else {
+            greetingKey = "night";
         }
 
         // Get the user's language setting
         const currentLanguage = getLanguageStatus("selectedLanguage") || "en"; // Default to English
 
-        // Return the translated greeting is available
-        return translations[currentLanguage]?.greeting?.[greetingKey] ?? translations["en"].greeting[greetingKey];
+        // Fallback key for any language that only has traditional morning/afternoon/evening
+        let fallbackKey = "morning";
+        if (currentHour >= 12 && currentHour < 17) {
+            fallbackKey = "afternoon";
+        } else if (currentHour >= 17) {
+            fallbackKey = "evening";
+        }
+
+        // Return the translated greeting if available, falling back gracefully
+        return (
+            translations[currentLanguage]?.greeting?.[greetingKey] ??
+            translations["en"]?.greeting?.[greetingKey] ??
+            translations[currentLanguage]?.greeting?.[fallbackKey] ??
+            translations["en"]?.greeting?.[fallbackKey]
+        );
     }
 
     function updatedigiClock() {
@@ -392,15 +411,18 @@ async function initializeClock() {
 
         const clocktype1 = localStorage.getItem("clocktype");
         const dateElement = document.getElementById("date");
-        if (clocktype1 === "digital" && isGreetingEnabled) {
-            const newGreeting = getGreeting();
-            if (newGreeting !== lastGreetingString) {
+        if (clocktype1 === "digital") {
+            if (isGreetingEnabled) {
                 dateElement.style.display = "block";
-                dateElement.innerText = newGreeting;
-                lastGreetingString = newGreeting;
+                const newGreeting = getGreeting();
+                if (newGreeting !== lastGreetingString) {
+                    dateElement.innerText = newGreeting;
+                    lastGreetingString = newGreeting;
+                }
+            } else {
+                dateElement.style.display = "none";
+                lastGreetingString = null;
             }
-        } else if (clocktype1 === "digital") {
-            dateElement.style.display = "none";  // Hide the greeting
         }
     }
 
@@ -545,6 +567,7 @@ async function initializeClock() {
 
         greetingCheckbox.addEventListener("change", () => {
             localStorage.setItem("greetingEnabled", greetingCheckbox.checked);
+            lastGreetingString = null;
             updatedigiClock();
         });
 

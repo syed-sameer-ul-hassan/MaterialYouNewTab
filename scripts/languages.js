@@ -168,6 +168,8 @@ function applyLanguage(lang) {
         "greetinginfo",
         "userTextTitle",
         "userTextInfo",
+        "fontTitle",
+        "fontDesc",
         "useproxytitletext",
         "useproxyText",
         "ProxyText",
@@ -365,7 +367,21 @@ function applyLanguage(lang) {
 
     // Dynamically update the font family based on the language
     const root = document.documentElement;
-    const commonFontStack = "'poppins', 'Poppins', sans-serif";
+    const savedUserFont = localStorage.getItem("selectedFont");
+    const savedCustomFont = localStorage.getItem("customFontName");
+    let activeFontName = savedUserFont && savedUserFont !== "default"
+        ? (savedUserFont === "custom" ? savedCustomFont : savedUserFont)
+        : null;
+
+    let commonFontStack = "'poppins', 'Poppins', sans-serif";
+    if (activeFontName) {
+        if (savedUserFont === "system") {
+            commonFontStack = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+        } else {
+            commonFontStack = `"${activeFontName}", 'poppins', 'Poppins', sans-serif`;
+        }
+    }
+
     if (lang === "vi") {
         loadFont("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap");
         root.style.setProperty("--main-font-family", `"Be Vietnam Pro", ${commonFontStack}`);

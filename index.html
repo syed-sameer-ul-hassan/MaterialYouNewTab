@@ -27,6 +27,7 @@
     <script defer src="scripts/browser-utils.js"></script>
     <script defer src="scripts/alert-modal.js"></script>
     <script defer src="scripts/wallpaper.js"></script>
+    <script defer src="scripts/font.js"></script>
     <script defer src="scripts/widgets-transparency.js"></script>
     <script defer src="scripts/clock.js"></script>
     <script defer src="scripts/weather.js"></script>
@@ -1795,6 +1796,52 @@
                                     </div>
                                     <!-- End of opacity Bar Control -->
                                 </div>
+
+                                <!-- Font Family Selection -->
+                                <div class="innerSurface fontSectionContainer" id="fontSectionCard">
+                                    <div class="fontCardHeader" id="fontCardHeader" role="button" tabindex="0">
+                                        <div class="fontCardTitleGroup">
+                                            <div class="bigText" id="fontTitle">Font Family</div>
+                                            <div class="infoText" id="fontActiveBadge">Poppins (Default)</div>
+                                        </div>
+                                        <span class="fontCardChevron" id="fontCardChevron"></span>
+                                    </div>
+
+                                    <div class="fontCardBody" id="fontCardBody">
+                                        <!-- Search Bar -->
+                                        <div class="fontSearchBarContainer">
+                                            <svg class="fontSearchIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                                            </svg>
+                                            <input type="text" id="fontSearchInput" class="fontSearchInput" placeholder="Search 200+ Google fonts or type any..." autocomplete="off" spellcheck="false" />
+                                            <button type="button" id="clearFontSearchBtn" class="clearFontSearchBtn" style="display: none;">&times;</button>
+                                        </div>
+
+                                        <!-- Filter Pills -->
+                                        <div class="fontCategoryPills" id="fontCategoryPills">
+                                            <button type="button" class="fontPill active" data-category="all">All</button>
+                                            <button type="button" class="fontPill" data-category="Sans-Serif">Sans</button>
+                                            <button type="button" class="fontPill" data-category="Serif">Serif</button>
+                                            <button type="button" class="fontPill" data-category="Monospace">Mono</button>
+                                            <button type="button" class="fontPill" data-category="Handwriting">Handwriting</button>
+                                            <button type="button" class="fontPill" data-category="Display">Display</button>
+                                        </div>
+
+                                        <!-- Custom Font Match Action -->
+                                        <div class="customFontApplyRow" id="customFontApplyRow" style="display: none;">
+                                            <div class="customFontPreviewText">
+                                                <span>Use custom:</span> <strong id="customFontNameDisplay"></strong>
+                                            </div>
+                                            <button type="button" id="applyTypedFontBtn" class="fontApplyBtn">Apply</button>
+                                        </div>
+
+                                        <!-- Font Cards Grid -->
+                                        <div class="fontGrid" id="fontGrid">
+                                            <!-- Dynamically populated -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End of Font Family Selection -->
                             </div>
                         </div>
                     </div>
