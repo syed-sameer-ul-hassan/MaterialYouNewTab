@@ -284,8 +284,32 @@
         });
     }
 
+    function applyFontWeight(weightValue, save = true) {
+        const weight = String(weightValue || "400");
+        root.style.setProperty("--main-font-weight", weight);
+        if (document.body) {
+            document.body.style.setProperty("--main-font-weight", weight);
+        }
+        if (save) {
+            localStorage.setItem("selectedFontWeight", weight);
+        }
+        updateActiveFontWeight(weight);
+    }
+
+    function updateActiveFontWeight(activeWeight) {
+        const pills = document.querySelectorAll(".fontWeightPill");
+        pills.forEach(pill => {
+            pill.classList.toggle("active", pill.getAttribute("data-weight") === String(activeWeight));
+        });
+    }
+
     window.applyUserFont = applyFont;
     window.loadGoogleFont = loadGoogleFont;
+    window.applyFontWeight = applyFontWeight;
+
+    // Apply saved font weight early
+    const earlySavedWeight = localStorage.getItem("selectedFontWeight") || "400";
+    applyFontWeight(earlySavedWeight, false);
 
     document.addEventListener("DOMContentLoaded", () => {
         const fontSectionCard = document.getElementById("fontSectionCard");
@@ -421,6 +445,18 @@
                 selectedCategory = pill.getAttribute("data-category") || "all";
                 renderFontGrid();
             });
+        }
+
+        // Font weight buttons
+        const fontWeightPills = document.getElementById("fontWeightPills");
+        if (fontWeightPills) {
+            fontWeightPills.addEventListener("click", (e) => {
+                const pill = e.target.closest(".fontWeightPill");
+                if (!pill) return;
+                const weight = pill.getAttribute("data-weight");
+                applyFontWeight(weight, true);
+            });
+            updateActiveFontWeight(localStorage.getItem("selectedFontWeight") || "400");
         }
 
         // Expand / Collapse card toggle

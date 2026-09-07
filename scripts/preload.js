@@ -45,6 +45,12 @@
         }
     }
 
+    // --- Font weight preference preload ---
+    const savedFontWeight = localStorage.getItem('selectedFontWeight');
+    if (savedFontWeight) {
+        root.style.setProperty('--main-font-weight', savedFontWeight);
+    }
+
     // Watch for the <body> to be created and instantly set it to "wallpaper" before the screen paints
     // if (localStorage.getItem('hasWallpaper') === 'true') {
     //     const observer = new MutationObserver(function () {

@@ -21,9 +21,19 @@
 	user-select: none;
 }
 
+body {
+	font-weight: var(--main-font-weight, 400);
+}
+
+input, button, select, textarea {
+	font-family: var(--main-font-family);
+	font-weight: inherit;
+}
+
 :root {
 	/* Default font */
 	--main-font-family: "poppins", "Poppins", sans-serif;
+	--main-font-weight: 400;
 
 	/* 🔵🔵🔵 */
 	/* ⚠️ Please don't change the color value or names for Blue (if ? modifying code would be difficult */
@@ -201,6 +211,12 @@ html {
 
 .html::-webkit-scrollbar {
 	display: none;
+}
+
+*::-webkit-scrollbar-button {
+	display: none;
+	width: 0;
+	height: 0;
 }
 
 body {
@@ -1649,7 +1665,7 @@ body[data-bg="wallpaper"] #date {
 	text-anchor: middle;
 	fill: var(--darkColor-blue);
 	font-size: 8rem;
-	font-weight: lighter;
+	font-weight: var(--main-font-weight, lighter);
 	margin: auto;
 	width: fit-content;
 	direction: ltr;
@@ -4134,17 +4150,34 @@ input:checked + .toggle:before {
 	max-height: 240px;
 	overflow-y: auto;
 	padding-right: 4px;
-	scrollbar-width: thin;
-	scrollbar-color: var(--darkColor-blue) transparent;
 }
 
 .languageGrid::-webkit-scrollbar {
 	width: 5px;
 }
 
+.languageGrid::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.languageGrid::-webkit-scrollbar-button,
+.languageGrid::-webkit-scrollbar-button:single-button,
+.languageGrid::-webkit-scrollbar-button:vertical:decrement,
+.languageGrid::-webkit-scrollbar-button:vertical:increment,
+.languageGrid::-webkit-scrollbar-button:start:decrement,
+.languageGrid::-webkit-scrollbar-button:end:increment {
+	display: none !important;
+	width: 0 !important;
+	height: 0 !important;
+}
+
 .languageGrid::-webkit-scrollbar-thumb {
 	background-color: var(--darkColor-blue);
-	border-radius: 3px;
+	border-radius: 4px;
+}
+
+.languageGrid::-webkit-scrollbar-thumb:hover {
+	background-color: var(--darkerColor-blue);
 }
 
 .languageItem {
@@ -4167,11 +4200,16 @@ input:checked + .toggle:before {
 
 .languageItem.active {
 	background-color: var(--darkColor-blue);
-	color: var(--whitishColor-blue);
+	color: var(--textColorDark-blue);
 }
 
 .languageItem.active:hover {
 	background-color: var(--darkColor-blue);
+}
+
+.languageItem.active .languageItemEnglish {
+	color: var(--textColorDark-blue);
+	opacity: 0.85;
 }
 
 .languageItemNative {
@@ -4233,6 +4271,12 @@ input:checked + .toggle:before {
 	transform: rotate(-135deg);
 }
 
+.fontSectionContainer.expanded .fontCardBody {
+	max-height: 580px;
+	opacity: 1;
+	margin-top: 14px;
+}
+
 .fontCardBody {
 	max-height: 0;
 	opacity: 0;
@@ -4241,12 +4285,6 @@ input:checked + .toggle:before {
 		max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
 		opacity 0.25s ease,
 		margin-top 0.25s ease;
-}
-
-.fontSectionContainer.expanded .fontCardBody {
-	max-height: 520px;
-	opacity: 1;
-	margin-top: 14px;
 }
 
 .fontSearchBarContainer {
@@ -4327,7 +4365,7 @@ input:checked + .toggle:before {
 
 .fontPill.active {
 	background-color: var(--darkColor-blue);
-	color: var(--whitishColor-blue);
+	color: var(--textColorDark-blue);
 }
 
 .black-theme .fontPill {
@@ -4336,8 +4374,47 @@ input:checked + .toggle:before {
 }
 
 .black-theme .fontPill.active {
-	background-color: var(--darkerColor-blue);
-	color: #ffffff;
+	background-color: var(--darkColor-blue);
+	color: var(--textColorDark-blue);
+}
+
+.fontWeightContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	margin-top: 10px;
+	width: 100%;
+}
+
+.fontWeightLabel {
+	font-size: 0.72rem;
+	font-weight: 500;
+	color: var(--textColorDark-blue);
+	opacity: 0.75;
+	padding-left: 2px;
+}
+
+.black-theme .fontWeightLabel {
+	color: #e2eeff;
+	opacity: 0.8;
+}
+
+.fontWeightPills {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 5px;
+	width: 100%;
+}
+
+.fontWeightPills .fontPill {
+	padding: 6px 2px;
+	font-size: 0.69rem;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	border-radius: 12px;
 }
 
 .customFontApplyRow {
@@ -4374,9 +4451,23 @@ input:checked + .toggle:before {
 	width: 5px;
 }
 
+.fontGrid::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.fontGrid::-webkit-scrollbar-button {
+	display: none;
+	width: 0;
+	height: 0;
+}
+
 .fontGrid::-webkit-scrollbar-thumb {
 	background-color: var(--darkColor-blue);
 	border-radius: 3px;
+}
+
+.fontGrid::-webkit-scrollbar-thumb:hover {
+	background-color: var(--darkerColor-blue);
 }
 
 .fontItem {
@@ -4399,7 +4490,7 @@ input:checked + .toggle:before {
 
 .fontItem.active {
 	background-color: var(--darkColor-blue);
-	color: var(--whitishColor-blue);
+	color: var(--textColorDark-blue);
 }
 
 .fontItem.active:hover {
@@ -4421,7 +4512,8 @@ input:checked + .toggle:before {
 }
 
 .fontItem.active .fontItemCategory {
-	opacity: 0.9;
+	color: var(--textColorDark-blue);
+	opacity: 0.85;
 }
 
 .fontApplyBtn {
@@ -5579,12 +5671,17 @@ body[data-bg="wallpaper"] .dropdown-content {
 }
 
 .black-theme .languageItem.active {
-	background-color: var(--darkerColor-blue);
-	color: #ffffff;
+	background-color: var(--darkColor-blue);
+	color: var(--textColorDark-blue);
 }
 
 .black-theme .languageItem.active:hover {
-	background-color: var(--darkerColor-blue);
+	background-color: var(--darkColor-blue);
+}
+
+.black-theme .languageItem.active .languageItemEnglish {
+	color: var(--textColorDark-blue);
+	opacity: 0.85;
 }
 
 .black-theme .fontSearchBarContainer {
@@ -5610,12 +5707,17 @@ body[data-bg="wallpaper"] .dropdown-content {
 }
 
 .black-theme .fontItem.active {
-	background-color: var(--darkerColor-blue);
-	color: #ffffff;
+	background-color: var(--darkColor-blue);
+	color: var(--textColorDark-blue);
 }
 
 .black-theme .fontItem.active:hover {
-	background-color: var(--darkerColor-blue);
+	background-color: var(--darkColor-blue);
+}
+
+.black-theme .fontItem.active .fontItemCategory {
+	color: var(--textColorDark-blue);
+	opacity: 0.85;
 }
 
 .black-theme .customFontApplyRow {
