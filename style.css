@@ -4145,15 +4145,17 @@ input:checked + .toggle:before {
 
 .languageGrid {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap: 8px;
 	max-height: 240px;
 	overflow-y: auto;
+	overflow-x: hidden;
 	padding-right: 4px;
 }
 
 .languageGrid::-webkit-scrollbar {
 	width: 5px;
+	height: 0;
 }
 
 .languageGrid::-webkit-scrollbar-track {
@@ -4191,6 +4193,7 @@ input:checked + .toggle:before {
 	justify-content: center;
 	transition: background-color 0.18s var(--md-motion-ease), color 0.18s var(--md-motion-ease);
 	position: relative;
+	min-width: 0;
 	overflow: hidden;
 }
 
@@ -4334,15 +4337,9 @@ input:checked + .toggle:before {
 
 .fontCategoryPills {
 	display: flex;
+	flex-wrap: wrap;
 	gap: 6px;
 	margin-top: 10px;
-	overflow-x: auto;
-	padding-bottom: 2px;
-	scrollbar-width: none;
-}
-
-.fontCategoryPills::-webkit-scrollbar {
-	display: none;
 }
 
 .fontPill {
@@ -4439,16 +4436,18 @@ input:checked + .toggle:before {
 
 .fontGrid {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap: 8px;
 	margin-top: 10px;
 	max-height: 240px;
 	overflow-y: auto;
+	overflow-x: hidden;
 	padding-right: 4px;
 }
 
 .fontGrid::-webkit-scrollbar {
 	width: 5px;
+	height: 0;
 }
 
 .fontGrid::-webkit-scrollbar-track {
@@ -4482,6 +4481,8 @@ input:checked + .toggle:before {
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 	transition: background-color 0.2s var(--md-motion-ease);
 	position: relative;
+	min-width: 0;
+	overflow: hidden;
 }
 
 .fontItem:hover {
