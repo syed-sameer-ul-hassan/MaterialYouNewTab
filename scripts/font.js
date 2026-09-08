@@ -341,6 +341,7 @@
 
         // Render font grid (always reads fresh localStorage state)
         function renderFontGrid() {
+            fontCardObserver.disconnect();
             fontGrid.innerHTML = "";
             const currentSavedFont = localStorage.getItem("selectedFont") || "default";
             const currentCustomFont = localStorage.getItem("customFontName") || "";

@@ -273,8 +273,8 @@ async function initializeClock() {
         // Return the translated greeting if available, falling back gracefully
         return (
             translations[currentLanguage]?.greeting?.[greetingKey] ??
-            translations["en"]?.greeting?.[greetingKey] ??
             translations[currentLanguage]?.greeting?.[fallbackKey] ??
+            translations["en"]?.greeting?.[greetingKey] ??
             translations["en"]?.greeting?.[fallbackKey]
         );
     }

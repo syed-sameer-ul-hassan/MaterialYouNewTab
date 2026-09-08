@@ -140,7 +140,7 @@ const ar_SA = {
     "humidityLevel": "الرطوبة",
     "feelsLike": "المحسوسة",
     "minMaxTemp": "الأدنى ~ الأقصى",
-    "location": "الأرض",
+    "location": "الموقع",
     "enterBtn": "بحث",
     "searchPlaceholder": "اكتب هنا...",
     "listenPlaceholder": "جارٍ الاستماع...",

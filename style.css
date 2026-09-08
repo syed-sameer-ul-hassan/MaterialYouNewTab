@@ -4266,6 +4266,12 @@ input:checked + .toggle:before {
 	color: inherit;
 }
 
+.fontCardHeader:focus-visible {
+	outline: 2px solid var(--darkColor-blue);
+	outline-offset: 4px;
+	border-radius: 8px;
+}
+
 .fontCardTitleGroup {
 	display: flex;
 	flex-direction: column;

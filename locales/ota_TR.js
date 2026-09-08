@@ -71,8 +71,8 @@ const ota_TR = {
     // Search
     "micIconTitle": "میكروفون دوگمه‌سنی كیزله",
     "micIconInfo": "سسله یازمه چالیشمایورسه",
-    "aiModeIconTitle": "یاپای ذكا طרزی دوگمه‌سنی كیزله",
-    "aiModeIconInfo": "Google یاپای ذكا طרزی آراما دوگمه‌سنی كیزله",
+    "aiModeIconTitle": "یاپای ذكا طرزی دوگمه‌سنی كیزله",
+    "aiModeIconInfo": "Google یاپای ذكا طرزی آراما دوگمه‌سنی كیزله",
     "hideSearchWith": "آراما موطورلرینی كیزله",
     "hideSearchWithInfo": "سیمكه‌سنه باصارق آراما موطورلری آراسنده كچیك",
     "motivationalQuotesText": "تشویق ایدیسی سوزلر",
@@ -188,7 +188,7 @@ const ota_TR = {
     "menuCloseText": "قاپات",
 
     // Tips
-    "switchSearchModes": "آراما طרزلرینی دگیشدیرك",
+    "switchSearchModes": "آراما طرزلرینی دگیشدیرك",
     "switchSearchModesInfo": "طرزی دگیشدیرمك ایچون 'ایله آرا' سچنكه‌سنه باصكز.",
     "adjustZoom": "یاقینلاشدیرمانی آیارلاییك",
     "adjustZoomInfo": "یاقینلاشدیرمانی آیارلامق ایچون Ctrl + \"+\" و يا Ctrl + \"-\" دوگمه‌لرینه باصكز.",

@@ -37,6 +37,7 @@
             const fontName = savedFont === 'custom' ? customFont : savedFont;
             if (fontName) {
                 const link = document.createElement('link');
+                link.id = `google-font-${fontName.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
                 link.rel = 'stylesheet';
                 link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(fontName.trim().replace(/ /g, '+'))}:wght@300;400;500;600;700&display=swap`;
                 document.head.appendChild(link);
