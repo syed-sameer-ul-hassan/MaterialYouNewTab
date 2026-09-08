@@ -159,6 +159,9 @@ const ALL_LANGUAGES = [
 
 // Function to apply the language to the page
 function applyLanguage(lang) {
+    if (lang === "ota_TR") {
+        lang = "ota-tr";
+    }
     document.title = translations[lang]?.newTabTitle || translations["en"].newTabTitle;
 
     // Mapping of text elements and their translation keys
@@ -411,7 +414,7 @@ function applyLanguage(lang) {
     // Function to load and apply global font stack seamlessly across languages
     function updateGlobalFontStack(targetLang) {
         const root = document.documentElement;
-        const currentLang = targetLang || localStorage.getItem("selectedLanguage") || "en";
+        const currentLang = targetLang || getLanguageStatus("selectedLanguage") || "en";
         const savedUserFont = localStorage.getItem("selectedFont");
         const savedCustomFont = localStorage.getItem("customFontName");
 
@@ -681,5 +684,10 @@ function saveLanguageStatus(key, languageStatus) {
 
 // Function to get the language status from localStorage
 function getLanguageStatus(key) {
-    return localStorage.getItem(key);
+    let status = localStorage.getItem(key);
+    if (key === "selectedLanguage" && status === "ota_TR") {
+        status = "ota-tr";
+        localStorage.setItem(key, "ota-tr");
+    }
+    return status;
 }
