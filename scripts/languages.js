@@ -80,7 +80,7 @@ const menuWidths = {
 };
 
 const numberMappings = {
-    "bn": { "0": "০", "1": "১", "2": "২", "3": "৩", "4": "৪", "5": "৫", "6": "६", "7": "৭", "8": "৮", "9": "৯" },
+    "bn": { "0": "০", "1": "১", "2": "২", "3": "৩", "4": "৪", "5": "৫", "6": "৬", "7": "৭", "8": "৮", "9": "৯" },
     "ta": { "0": "௦", "1": "௧", "2": "௨", "3": "௩", "4": "௪", "5": "௫", "6": "௬", "7": "௭", "8": "௮", "9": "௯" },
     "mr": { "0": "०", "1": "१", "2": "२", "3": "३", "4": "४", "5": "५", "6": "६", "7": "७", "8": "८", "9": "९" },
     "ne": { "0": "०", "1": "१", "2": "२", "3": "३", "4": "४", "5": "५", "6": "६", "7": "७", "8": "८", "9": "९" },
@@ -552,8 +552,10 @@ function initLanguageUI() {
 
     // Toggle expansion
     if (header) {
+        header.setAttribute("aria-expanded", card.classList.contains("open") ? "true" : "false");
         header.addEventListener("click", () => {
             const isOpen = card.classList.toggle("open");
+            header.setAttribute("aria-expanded", isOpen ? "true" : "false");
             if (isOpen && searchInput) {
                 setTimeout(() => searchInput.focus(), 150);
             }
@@ -574,7 +576,8 @@ function initLanguageUI() {
         });
 
         filtered.forEach(item => {
-            const el = document.createElement("div");
+            const el = document.createElement("button");
+            el.type = "button";
             const isActive = item.code === currentLang;
             el.className = `languageItem ${isActive ? "active" : ""}`;
             el.setAttribute("data-lang-code", item.code);
@@ -600,6 +603,9 @@ function initLanguageUI() {
         sessionStorage.removeItem("reopenLanguageCard");
         if (card) {
             card.classList.add("open");
+            if (header) {
+                header.setAttribute("aria-expanded", "true");
+            }
         }
     }
 

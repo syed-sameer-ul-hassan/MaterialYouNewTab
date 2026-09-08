@@ -4025,6 +4025,10 @@ input:checked + .toggle:before {
 	background-color: var(--accentLightTint-blue);
 	border-radius: 24px;
 	transition: background-color 0.2s var(--md-motion-ease);
+	width: 100%;
+	border: none;
+	text-align: start;
+	color: inherit;
 }
 
 .languageCardHeader:hover {
@@ -4195,6 +4199,9 @@ input:checked + .toggle:before {
 	position: relative;
 	min-width: 0;
 	overflow: hidden;
+	width: 100%;
+	border: none;
+	text-align: start;
 }
 
 .languageItem:hover {
@@ -4251,6 +4258,12 @@ input:checked + .toggle:before {
 	cursor: pointer;
 	user-select: none;
 	outline: none;
+	width: 100%;
+	background: none;
+	border: none;
+	padding: 0;
+	text-align: inherit;
+	color: inherit;
 }
 
 .fontCardTitleGroup {
@@ -4483,6 +4496,9 @@ input:checked + .toggle:before {
 	position: relative;
 	min-width: 0;
 	overflow: hidden;
+	width: 100%;
+	border: none;
+	text-align: start;
 }
 
 .fontItem:hover {
@@ -5647,6 +5663,11 @@ body[data-bg="wallpaper"] .dropdown-content {
 
 .black-theme .languageCardHeader:hover {
 	background-color: #242424;
+}
+
+.black-theme .languageCardTitle,
+.black-theme .languageCardChevron {
+	color: #e2eeff;
 }
 
 .black-theme .languageSearchBox {

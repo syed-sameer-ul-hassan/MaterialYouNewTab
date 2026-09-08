@@ -94,7 +94,9 @@ function updateWeatherLabels(targetLang) {
             } else {
                 const feelsLikeVal = isFahrenheit ? parsedData.current.feelslike_f : parsedData.current.feelslike_c;
                 const unit = isFahrenheit ? (lang === "cs" ? " °F" : "°F") : (lang === "cs" ? " °C" : "°C");
-                feelsLikeEl.textContent = `${feelsLikeLabel} ${localizeNumbers(feelsLikeVal.toString(), lang)}${unit}`;
+                feelsLikeEl.textContent = isRTL
+                    ? `${localizeNumbers(feelsLikeVal.toString(), lang)}${unit} ${feelsLikeLabel}`
+                    : `${feelsLikeLabel} ${localizeNumbers(feelsLikeVal.toString(), lang)}${unit}`;
             }
         }
 

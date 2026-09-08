@@ -361,15 +361,20 @@
             // If user has a custom font active and it's not in the presets, display it as a card
             if (currentSavedFont === "custom" && currentCustomFont) {
                 if (!filterText || currentCustomFont.toLowerCase().includes(filterText)) {
-                    const customCard = document.createElement("div");
+                    const customCard = document.createElement("button");
+                    customCard.type = "button";
                     customCard.className = "fontItem active";
                     customCard.setAttribute("data-font-id", "custom");
                     customCard.setAttribute("data-font-name", currentCustomFont);
                     customCard.style.fontFamily = `"${currentCustomFont}", sans-serif`;
-                    customCard.innerHTML = `
-                        <div class="fontItemName">${currentCustomFont}</div>
-                        <div class="fontItemCategory">Custom Font</div>
-                    `;
+                    const fontNameEl = document.createElement("div");
+                    fontNameEl.className = "fontItemName";
+                    fontNameEl.textContent = currentCustomFont;
+                    const fontCategoryEl = document.createElement("div");
+                    fontCategoryEl.className = "fontItemCategory";
+                    fontCategoryEl.textContent = "Custom Font";
+                    customCard.appendChild(fontNameEl);
+                    customCard.appendChild(fontCategoryEl);
                     customCard.addEventListener("click", () => {
                         applyFont("custom", currentCustomFont, true);
                     });
@@ -378,7 +383,8 @@
             }
 
             filtered.forEach(font => {
-                const item = document.createElement("div");
+                const item = document.createElement("button");
+                item.type = "button";
                 const isActive = (currentSavedFont === "custom" ? false : (currentSavedFont === font.id || (!currentSavedFont && font.id === "default")));
                 item.className = `fontItem ${isActive ? "active" : ""}`;
                 item.setAttribute("data-font-id", font.id);
@@ -460,8 +466,10 @@
         }
 
         // Expand / Collapse card toggle
+        fontCardHeader.setAttribute("aria-expanded", fontSectionCard.classList.contains("expanded") ? "true" : "false");
         fontCardHeader.addEventListener("click", () => {
-            fontSectionCard.classList.toggle("expanded");
+            const isExpanded = fontSectionCard.classList.toggle("expanded");
+            fontCardHeader.setAttribute("aria-expanded", isExpanded ? "true" : "false");
         });
 
         // Search input handling

@@ -19,7 +19,7 @@ const az = {
     "editShortcutsText": "Qısayolları redaktə et",
     "shortcutsInfoText": "Göstəriləcək qısayolları seçin",
     "editShortcutsList": "Saxlanmış Qısayollar",
-    "editShortcutsListInfo": "\"{plus}\" işarəsinə klikləyərək yeni qısayollar əlavə edə və ya qısayol adına və ya URL-ə klikləyərək mövcud olanları redaktə edə bilərsiniz.\nXüsusi nişanı sıfırlamaq üçün şəkil URL-ni təmizləyin.",
+    "editShortcutsListInfo": "\"+\" işarəsinə klikləyərək yeni qısayollar əlavə edə və ya qısayol adına və ya URL-ə klikləyərək mövcud olanları redaktə edə bilərsiniz.\nXüsusi nişanı sıfırlamaq üçün şəkil URL-ni təmizləyin.",
     "adaptiveIconText": "Adaptiv nişanlar",
     "adaptiveIconInfoText": "Qısayol nişanları mövzuya uyğunlaşacaq",
     "bookmarksText": "Əlfəcinlər",
